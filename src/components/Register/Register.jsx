@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { HiEye, HiEyeOff } from 'react-icons/hi'; // Importing eye icons for password visibility toggle
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; 
+import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth"; 
 
 import { auth } from '../../../firebase.init';
 
@@ -46,12 +46,24 @@ function Register() {
 
     
     try {
-     
+  
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
       const user = userCredential.user;
+// Send email verification
+
+await sendEmailVerification(user);
+setSuccess('User  registered successfully! Please check your email for verification.');
+
+const profile = {
+  displayName : username
+}
+await updateProfile(auth.currentUser, profile);
+
       console.log('User  registered:', user);
+
+    
 
       setSuccess('User  registered successfully!'); // Set success message
 
