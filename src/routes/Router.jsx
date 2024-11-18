@@ -3,6 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import Home from "../components/Home/Home";
+import ForgotPassword from "../components/ForgotPassWord/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
+      },
+      {
+        path: "/forgot",
+        element: <ForgotPassword/>,
       },
       {
         path: "/login",

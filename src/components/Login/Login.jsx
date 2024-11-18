@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../../firebase.init';
 import { HiEye, HiEyeOff } from 'react-icons/hi'; // 
+import { Link } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,16 +24,17 @@ console.log(rememberMe)
     try {
 
 
-      if (rememberMe) {
-        // Save email to localStorage or handle accordingly
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log('User  logged in:', user);
-      setSuccess('Login successful!'); // Set success message
-      
-      }else{
+      if (!rememberMe) {
         setError('Rebember Me');
+        // Save email to localStorage or handle accordingly
+      }else{
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log('User  logged in:', user);
+        setSuccess('Login successful!'); // Set success message
       }
+     
+      
     
       // Here, you can handle the "Remember Me" functionality
      
@@ -94,6 +96,8 @@ console.log(rememberMe)
         </div>
         {success && <p className="text-green-500 text-sm mb-4">{success}</p>}
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+<Link to={'/forgot'}>Forgot Password</Link>
 
         <button 
           type="submit" 

@@ -23,6 +23,7 @@ const Navbar = () => {
           <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200">Home</a>
           <a href="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200">Login</a>
           <a href="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200">Regester</a>
+         
           <div className="relative">
             <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200" onClick={toggleDropdown}>
               Services

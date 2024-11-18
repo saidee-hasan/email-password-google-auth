@@ -23,14 +23,15 @@ function Register() {
   const [loading, setLoading] = useState(false);
 
 
+
+
+
   const togglePasswordVisibility = () => {
 
     setShowPassword(!showPassword);
 
   };
-if(password > 6){
-  setError("Password InValid")
-}
+
 
   const handleSubmit = async (e) => {
 
@@ -41,7 +42,11 @@ if(password > 6){
     setError(''); // Reset error state
 
 
+
+
+    
     try {
+     
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
