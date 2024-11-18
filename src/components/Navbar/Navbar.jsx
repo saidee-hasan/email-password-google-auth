@@ -20,6 +20,7 @@ const Navbar = () => {
         <div className="text-white text-2xl font-bold">MyLogo</div>
         
         <div className="hidden md:flex space-x-6">
+          <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200">Home</a>
           <a href="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200">Login</a>
           <a href="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition duration-200">Regester</a>
           <div className="relative">
