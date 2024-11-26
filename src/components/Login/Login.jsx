@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from '../../../firebase.init';
 import { HiEye, HiEyeOff } from 'react-icons/hi'; // 
 import { Link } from 'react-router-dom';
@@ -52,8 +52,30 @@ console.log(rememberMe)
       setLoading(false); // Reset loading state
     }
   };
-
+  const provider = new GoogleAuthProvider();
+  const handleLogin=()=>{
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+  }
   return (
+    <>   <button onClick={handleLogin}>Login</button>
     <div className="flex items-center justify-center min-h-screen bg-gray-200">
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
@@ -107,7 +129,8 @@ console.log(rememberMe)
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
-    </div>
+   
+    </div></>
   );
 }
 
